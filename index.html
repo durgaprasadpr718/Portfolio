@@ -1,461 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choudhury Durga Prasad | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choudhury Durga Prasad - Portfolio</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #0f0f0f;
-      color: #ffffff;
-      line-height: 1.6;
-      overflow-x: hidden; /* Prevent horizontal scrollbars */
-    }
-
-    header {
-      background-color: #1c1c1c;
-      padding: 1.5rem 3rem;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* Subtle shadow */
-    }
-
-    header h1 {
-      font-size: 1.5rem;
-      color: #00ffff;
-    }
-
-    nav a {
-      color: white;
-      margin-left: 1.5rem;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s ease;
-      position: relative; /* For underline effect */
-      padding-bottom: 0.3rem; /* Space for underline */
-    }
-    /* Underline effect on hover */
-    nav a::after {
-        content: '';
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: 0;
-        left: 0;
-        background-color: #00ffff;
-        transition: width 0.3s ease;
-    }
-    nav a:hover::after {
-        width: 100%;
-    }
-    nav a:hover {
-      color: #00ffff;
-    }
-
-    section {
-      padding: 5rem 3rem;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
       justify-content: center;
-      border-bottom: 1px solid #2a2a2a;
-      opacity: 0; /* Start sections as invisible for animation */
-      transform: translateY(30px); /* Start slightly lower */
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Fade/slide effect */
-    }
-    /* Style for sections once they become visible (handled by JS or manual trigger if needed, or just on load) */
-    section.visible {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    section:last-of-type {
-        border-bottom: none;
-    }
-    section#home {
-        min-height: calc(100vh - 70px); /* Adjust for header */
-        opacity: 1; /* Hero visible by default */
-        transform: translateY(0);
-        transition: none; /* No transition on hero load */
-    }
-
-
-    /* Keyframes for subtle pulse animation */
-    @keyframes pulse {
-        0% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.4); }
-        50% { text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); }
-        100% { text-shadow: 0 0 5px rgba(0, 255, 255, 0.4); }
-    }
-
-    h2 {
-        font-size: 2rem;
-        color: #00ffff;
-        margin-bottom: 2rem; /* Increased margin */
-        text-align: center;
-    }
-
-    /* --- Hero Section Styles --- */
-    .hero {
-      flex-direction: row;
       align-items: center;
-      justify-content: space-around;
-      gap: 2rem;
+      flex-direction: column;
+      text-align: center;
+      padding: 50px;
+      overflow-y: auto;
+    }
+
+    h1, h2, h3 {
+      font-weight: bold;
+      margin-bottom: 20px;
+      animation: slideIn 2s ease-out;
+    }
+
+    .section {
+      width: 80%;
+      margin: 20px 0;
+    }
+
+    img.profile-pic {
+      width: 200px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 4px solid #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      animation: slideIn 2s ease-out;
+    }
+
+    .animated-skill {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 20px;
+      height: 40px;
+      animation: fadeIn 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateY(-100px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .certifications-list {
       text-align: left;
-    }
-
-    .hero-content {
-      flex: 1;
       max-width: 600px;
+      margin: 0 auto;
+      font-size: 18px;
+      line-height: 1.8;
     }
 
-     .hero h2 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        text-align: left;
-        margin-bottom: 1rem;
-     }
-
-    .hero p {
-        font-size: 1.1rem;
-        margin-bottom: 2rem;
-        color: #cccccc; /* Slightly lighter text */
-    }
-
-    .highlight {
-      color: #00ffff;
-      /* Apply pulse animation to the highlighted name */
-      animation: pulse 2.5s infinite ease-in-out;
-    }
-
-    .hero-image img {
-      max-width: 280px;
-      height: auto;
-      border-radius: 15px; /* Slightly rounded corners instead of circle */
-      border: 4px solid #00ffff;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Enhanced glow */
-      transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transition for hover effect */
-    }
-    /* Optional: subtle zoom effect on image hover */
-    .hero-image img:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
-    }
-
-     /* --- Responsive Hero --- */
-    @media (max-width: 768px) {
-      .hero {
-        flex-direction: column;
-        text-align: center;
-        min-height: 100vh;
-      }
-      .hero h2 {
-          text-align: center;
-      }
-      .hero-image {
-          margin-top: 2rem;
-          order: -1;
-      }
-       .hero-image img {
-           max-width: 200px;
-           border-radius: 10px; /* Adjust radius for smaller size */
-       }
-       nav a { margin-left: 1rem; } /* Adjust nav spacing on mobile */
-       header { padding: 1rem 1.5rem; } /* Adjust header padding */
-    }
-
-    .button {
-      margin-top: 1rem;
-      margin-right: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background-color: #00ffff;
-      color: #000;
-      font-weight: 600;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      text-decoration: none;
+    a.cv-download {
       display: inline-block;
-      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      box-shadow: 0 4px 8px rgba(0, 255, 255, 0.2);
-    }
-
-    .button:hover {
-      background-color: #00dddd;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 12px rgba(0, 255, 255, 0.3);
-    }
-
-    /* --- Shared List Styling --- */
-    .list-container {
-        max-width: 800px;
-        margin: 0 auto;
-        padding-left: 0; /* Remove default padding */
-    }
-    .list-container ul {
-        list-style: none;
-        padding: 0;
-    }
-    .list-container li {
-        background-color: rgba(31, 31, 31, 0.7); /* Slightly transparent background */
-        backdrop-filter: blur(5px); /* Frosted glass effect (browser support varies) */
-        margin-bottom: 0.8rem;
-        padding: 1rem 1.5rem; /* Increased padding */
-        border-radius: 8px; /* Smoother corners */
-        border-left: 4px solid #00ffff;
-        font-size: 0.95rem;
-        transition: transform 0.3s ease, background-color 0.3s ease; /* Transition for hover */
-    }
-    .list-container li:hover {
-        transform: translateX(5px); /* Slight shift on hover */
-        background-color: rgba(40, 40, 40, 0.8);
-    }
-    .list-container li strong {
-        color: #ffffff;
-        display: block;
-        margin-bottom: 0.2rem;
-    }
-    .list-container li span {
-        font-size: 0.85rem;
-        color: #bbbbbb;
-    }
-
-    /* --- Skills Section Styles --- */
-    #skills ul {
-        list-style: none;
-        padding: 0;
-        text-align: center;
-    }
-     #skills li {
-        display: inline-block;
-        background-color: #2a2a2a;
-        color: #eee;
-        padding: 0.6rem 1.2rem; /* Slightly larger padding */
-        margin: 0.5rem;
-        border-radius: 20px; /* Pill shape */
-        font-size: 0.9rem;
-        border: 1px solid #444; /* Subtle border */
-        transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-        /* Add transition for hover effect */
-     }
-     /* Hover effect for skill tags */
-     #skills li:hover {
-         transform: translateY(-3px) scale(1.05); /* Lift and slightly enlarge */
-         background-color: #00ffff;
-         color: #0f0f0f; /* Dark text on hover */
-         cursor: default; /* Indicate non-clickable */
-         box-shadow: 0 4px 8px rgba(0, 255, 255, 0.3);
-     }
-     #skills li strong, #skills li span {
-         display: inline; margin-bottom: 0; font-size: inherit; color: inherit;
-     }
-
-    /* --- Certifications & Projects Section --- */
-    /* Use the standard .list-container styles */
-     #projects ul { list-style-type: none; } /* Remove bullets if using list-container */
-     #projects li {
-         background-color: rgba(31, 31, 31, 0.7); /* Apply consistent styling */
-         border-left: 4px solid #00ffff;
-         padding: 1rem 1.5rem;
-         margin-left: 0; /* Reset margin */
-     }
-
-
-    /* --- Resume Preview Section Styles --- */
-    #resume-preview {
-        text-align: center;
-    }
-    .resume-container {
-        width: 100%;
-        max-width: 800px;
-        height: 600px;
-        margin: 1.5rem auto 2rem auto;
-        border: 1px solid #333;
-        overflow: hidden;
-        border-radius: 8px; /* Rounded corners for iframe container */
-    }
-    .resume-container iframe {
-        width: 100%;
-        height: 100%;
-        border: none;
-    }
-
-    /* --- Contact Section Styles --- */
-    #contact {
-        text-align: center;
-    }
-     #contact p {
-         margin-bottom: 1.5rem;
-     }
-    .socials a {
-      color: #00ffff;
-      margin: 0 1rem;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f76c6c;
+      color: white;
       text-decoration: none;
-      font-size: 1.5rem; /* Larger social icons */
-      transition: color 0.3s ease, transform 0.3s ease;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
     }
-    .socials a:hover {
-      color: #ffffff;
-      transform: scale(1.1); /* Slightly enlarge icons on hover */
+
+    a.cv-download:hover {
+      background-color: #ff4c4c;
     }
 
     footer {
-      padding: 2rem 3rem;
-      text-align: center;
-      background-color: #1c1c1c;
-      font-size: 0.9rem;
-      margin-top: 3rem;
-      color: #aaa; /* Lighter footer text */
+      margin-top: 50px;
+      font-size: 16px;
+      color: #bbb;
     }
-    footer p a { /* Style links in footer if added */
-        color: #ccc;
-        text-decoration: none;
-        transition: color 0.3s;
-    }
-    footer p a:hover {
-        color: #00ffff;
-    }
-
   </style>
 </head>
-
 <body>
-  <header>
-    <h1>Durga Prasad</h1>
-    <nav>
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#projects">Projects</a>
-      <a href="#resume-preview">Resume</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <h2>Hi, I'm <span class="highlight">Choudhury Durga Prasad</span></h2>
-      <p>Detail-oriented Data Engineer with 3+ years of experience building and optimizing data pipelines, designing scalable models, and implementing ETL workflows using Python, AWS, GCP, Snowflake, Azure and more.</p>
-      <a href="Choudhury_Durga_Prasad_DE_CV.pdf" class="button" download>Download Resume</a>
-      <a href="#resume-preview" class="button">View Resume Online</a>
-    </div>
-    <div class="hero-image">
-      {/* --- Image updated to use the uploaded file --- */}
-      <img src="Durga_Prasad_recent.jpg" alt="Choudhury Durga Prasad headshot">
-    </div>
-  </section>
+  <h1>Welcome to My Portfolio</h1>
 
-  <section id="about">
+  <img src="Durga_Prasad_recent.png" alt="Profile Picture" class="profile-pic">
+
+  <!-- About Me Section -->
+  <div class="section about-section">
     <h2>About Me</h2>
-    <p style="max-width: 800px; margin: 0 auto; text-align: center;">
-        Detail-oriented Data Engineer with over 3+ Years of experience in building and optimizing data pipelines, designing scalable models, and implementing ETL workflows[cite: 1]. Proficient in Reactor data, Apache Airflow, Python, AWS, GCP, Snowflake, and Azure[cite: 2]. Proven track record in delivering real-time data solutions and actionable insights[cite: 3]. Seeking to leverage expertise to drive impactful data-centric solutions[cite: 3].
+    <p>
+      I am Choudhury Durga Prasad, a highly skilled Data Engineer with over <strong>4 years of experience</strong> specializing in building robust, scalable, and real-time data solutions. 
+      I have a strong background in cloud platforms like <strong>Google Cloud Platform (GCP)</strong>, <strong>Microsoft Azure</strong>, and <strong>AWS</strong>, along with expertise in modern data engineering tools such as <strong>Snowflake</strong>, <strong>BigQuery</strong>, and <strong>Apache Airflow</strong>.
     </p>
-  </section>
+    <p>
+      My passion lies in designing and optimizing <strong>data pipelines</strong>, performing <strong>data modeling</strong>, conducting <strong>query optimization</strong>, and enabling <strong>real-time data processing</strong> to empower business intelligence and analytics. I have successfully contributed to large-scale retail, e-commerce, and real-time analytics projects, ensuring seamless data flow, data accuracy, and performance tuning.
+    </p>
+    <p>
+      I am committed to continuous learning and staying at the forefront of cloud technologies, containerization (Docker & Kubernetes), data integration, and machine learning advancements. My problem-solving skills, attention to detail, and ability to collaborate with cross-functional teams make me a valuable asset for any data-driven organization.
+    </p>
+    <p>
+      I am passionate about transforming raw data into meaningful insights that drive business growth and strategic decision-making.
+    </p>
+  </div>
 
-  <section id="skills">
+  <!-- Skills Section -->
+  <div class="section skills-section">
     <h2>Skills</h2>
-     {/* Skills list with hover effect */}
-    <ul>
-        <li>Python</li><li>SQL</li><li>PySpark</li><li>Scala</li>
-        <li>UNIX</li><li>Powershell scripting</li>
-        <li>Amazon Redshift</li><li>Google Big Query</li><li>Snowflake</li><li>Databricks</li><li>DBT</li>
-        <li>Apache Airflow</li>
-        <li>Hadoop</li><li>Spark</li><li>Hive</li>
-        <li>MySQL</li><li>Oracle</li>
-        <li>Dimensional Modeling</li><li>Star Schema</li><li>Snowflake Schema</li>
-        <li>ETL Processes</li>
-        <li>Tableau</li><li>Power BI</li>
-        <li>AWS</li><li>Azure</li><li>GCP</li>
-        <li>Git</li>
-        <li>MS Office 365</li><li>Active Directory</li><li>MS Excel</li>
-    </ul>
-  </section>
+    <div class="animated-skill" id="animated-skill">Loading Skills...</div>
+  </div>
 
-  <section id="certifications">
-      <h2>Licenses & Certifications</h2>
-      <div class="list-container">
-          <ul>
-              <li><strong>Google Cloud Certified Professional Data Engineer</strong> <span>(Google) Issued May 2024 - Expires May 2026</span></li>
-              <li><strong>Microsoft Certified: Azure Data Engineer Associate</strong> <span>(Microsoft) Issued Apr 2023 - Expires Apr 2025</span></li>
-              <li><strong>Microsoft Certified: DevOps Engineer Expert</strong> <span>(Microsoft) Issued Jun 2022 - Expires Jun 2025</span></li>
-              <li><strong>Microsoft Certified: Azure Developer Associate</strong> <span>(Microsoft) Issued May 2022 - Expires Jun 2025</span></li>
-              <li><strong>Microsoft Azure Administrator Associate</strong> <span>(Microsoft) Issued Apr 2022 - Expires Apr 2025</span></li>
-              <li><strong>Amazon Web Services Certified Cloud Practitioner</strong> <span>(Amazon Web Services - AWS) Issued Mar 2022 - Expires Mar 2025</span> [cite: 41]</li>
-              <li><strong>Microsoft Certified: Fabric Analytics Engineer Associate</strong> <span>(Microsoft) Issued Jan 2025 - Expires Jan 2026</span></li>
-              <li><strong>Microsoft Certified: Azure Data Fundamentals</strong> <span>(Microsoft) - Check CV for Dates</span></li>
-          </ul>
-      </div>
-  </section>
-
-  <section id="projects">
-    <h2>Projects</h2>
-     <div class="list-container">
-        <ul>
-            <li>Shopping Sales Project: Developed an end-to-end data pipeline using AWS services and Airflow for reporting from Google Sheets API data[cite: 35].</li>
-            <li>Data Pipeline Automation: Automated data extraction, transformation, and loading using Apache Airflow[cite: 36].</li>
-            <li>Real-time Data Streaming: Implemented a real-time data ingestion system with Spark Streaming[cite: 37].</li>
-            <li>Gender and Age Detection System: Built an image recognition model to predict gender and age[cite: 38].</li>
-            <li>Customer Segmentation System: Utilized R and clustering techniques for customer segmentation[cite: 39].</li>
-            <li>Flight Delay Prediction Model: Developed a model for predicting flight delays[cite: 39].</li>
-        </ul>
+  <!-- Certifications Section -->
+  <div class="section certifications-section">
+    <h2>Certifications</h2>
+    <div class="certifications-list">
+      <ul>
+        <li>Google Cloud Certified Professional Data Engineer (Google)</li>
+        <li>Microsoft Certified: Azure Data Engineer Associate (Microsoft)</li>
+        <li>Microsoft Certified: DevOps Engineer Expert (Microsoft)</li>
+        <li>Microsoft Certified: Azure Developer Associate (Microsoft)</li>
+        <li>Microsoft Azure Administrator Associate (Microsoft)</li>
+        <li>Amazon Web Services Certified Cloud Practitioner (AWS)</li>
+        <li>Microsoft Certified: Fabric Analytics Engineer Associate (Microsoft)</li>
+        <li>Microsoft Certified: Azure Data Fundamentals (Microsoft)</li>
+      </ul>
     </div>
-  </section>
+  </div>
 
-  <section id="resume-preview">
-    <h2>Resume Preview</h2>
-    <div class="resume-container">
-      <iframe src="Choudhury_Durga_Prasad_DE_CV.pdf" title="Choudhury Durga Prasad Resume PDF Preview"></iframe>
-    </div>
-     <a href="Choudhury_Durga_Prasad_DE_CV.pdf" class="button" download>Download Full Resume</a>
-  </section>
-
-  <section id="contact">
+  <!-- Contact Section -->
+  <div class="section contact-section">
     <h2>Contact Me</h2>
-    <p>Feel free to reach out via Email or LinkedIn for collaborations or questions!</p>
-    <div class="socials">
-      <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" rel="noopener noreferrer" title="LinkedIn">LinkedIn</a>
-      <a href="https://github.com/durgaprasadpr718" target="_blank" rel="noopener noreferrer" title="GitHub">GitHub</a>
-      <a href="mailto:durgaprasadchowdury@gmail.com" title="Email">Email</a>
-      </div>
-  </section>
+    <p>Email: durgaprasadchowdury@gmail.com</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" style="color: #f76c6c;">Visit my LinkedIn</a></p>
+    <a href="Choudhury_Durga_Prasad_DE_CV.pdf" download class="cv-download">Download My CV</a>
+  </div>
 
+  <!-- Footer -->
   <footer>
-     <p>&copy; 2025 Choudhury Durga Prasad. Located in Pathapatnam, Andhra Pradesh, India. All rights reserved.</p>
+    <p>&copy; 2025 Choudhury Durga Prasad. All rights reserved.</p>
   </footer>
 
-  {/* Simple script to add 'visible' class to sections when they scroll into view */}
+  <!-- Skills Animation Script -->
   <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          const sections = document.querySelectorAll('section:not(#home)'); // Select all sections except hero
+    const skills = [
+      "Python", "SQL", "NumPy", "pandas", "Matplotlib", "Seaborn", 
+      "Tableau", "Snowflake", "BigQuery", "Google Cloud Platform (GCP)", "Azure", 
+      "Reactor UI", "Domain-Specific Language (DSL)", "Data Mapping", "Performance Tuning",
+      "Real-Time Data Pipelines: SoundCommerce", "AWS", "Docker", "Kubernetes",
+      "Data Modeling", "Query Optimization", "Data Integration (CSV & Excel)",
+      "Statistics: Probability, Hypothesis Testing, A/B Testing",
+      "Algorithms", "Data Structures", "Git", "GitHub", "Apache Airflow", "cron jobs"
+    ];
 
-          const observer = new IntersectionObserver((entries) => {
-              entries.forEach(entry => {
-                  if (entry.isIntersecting) {
-                      entry.target.classList.add('visible');
-                  }
-              });
-          }, {
-              threshold: 0.1 // Trigger when 10% of the section is visible
-          });
+    let index = 0;
+    const skillElement = document.getElementById('animated-skill');
 
-          sections.forEach(section => {
-              observer.observe(section);
-          });
-      });
+    function showNextSkill() {
+      skillElement.textContent = skills[index];
+      index = (index + 1) % skills.length;
+    }
+
+    setInterval(showNextSkill, 2000); // change skill every 2 seconds
+    showNextSkill(); // Show first skill immediately
   </script>
 
 </body>
