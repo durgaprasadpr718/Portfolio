@@ -1175,40 +1175,39 @@
         </div>
     </section>
 
-    <section id="contact" class="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-container">
-          <div class="contact-info">
-            <div class="contact-item">
-              <i class="fas fa-envelope"></i>
-              <p>durgaprasadchowdury@gmail.com</p>
+    <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/google.jpeg" alt="Google Cloud">
+                <h3>Google Cloud Certified Professional Data Engineer</h3>
             </div>
-            <div class="contact-item">
-              <i class="fas fa-phone"></i>
-              <p>+91 9502192674</p>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Fabric Analytics Engineer Associate</h3>
             </div>
-            <div class="contact-item">
-              <i class="fas fa-map-marker-alt"></i>
-              <p>Pathapatnam, Andhra Pradesh, India</p>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>icrosoft Certified: Azure Data Engineer Associate</h3>
             </div>
-            <div class="contact-item">
-              <i class="fab fa-github"></i>
-              <a href="https://www.github.com/durgaprasadpr718" target="_blank" rel="noopener noreferrer">github.com/durgaprasadpr718</a>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: DevOps Engineer Expert</h3>
             </div>
-            <div class="contact-item">
-              <i class="fab fa-linkedin"></i>
-              <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" rel="noopener noreferrer">linkedin.com/in/durga-prasad-choudhury-75022314b</a>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Azure Developer Associate</h3>
             </div>
-          </div>
-    
-          <form class="contact-form" id="contact-form">
-            <input type="text" name="user_name" placeholder="Your Name" required>
-            <input type="email" name="user_email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit">Send Message</button>
-          </form>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Azure Administrator Associate</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/aws.jpeg" alt="AWS">
+                <h3>AWS Certified Cloud Practitioner</h3>
+            </div>
         </div>
-      </section>
+    </section>
 
     <section id="resume" class="resume">
         <h2>My Resume</h2>
@@ -1233,7 +1232,7 @@
             <div class="contact-info">
                 <div class="contact-item">
                     <i class="fas fa-envelope"></i>
-                    <p>durgaprasadchowdury@gmail.com</p>
+                    <a href="mailto:durgaprasadchowdury@gmail.com">durgaprasadchowdury@gmail.com</a>
                 </div>
                 <div class="contact-item">
                     <i class="fas fa-phone"></i>
@@ -1252,12 +1251,6 @@
                     <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" rel="noopener noreferrer">linkedin.com/in/durga-prasad-choudhury-75022314b</a>
                 </div>
             </div>
-            <form class="contact-form" id="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button type="submit">Send Message</button>
-            </form>
         </div>
     </section>
 
@@ -1266,24 +1259,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        (function() {
-          emailjs.init('Ne1k7MZXHWJszDpot'); // Public Key
-        })();
-    
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
-          event.preventDefault();
-          
-          emailjs.sendForm('service_sb0d9d8', 'template_glhtcsm', this)
-            .then(function(response) {
-              alert('Message sent successfully! Thank you for reaching out!');
-              document.getElementById('contact-form').reset();
-            }, function(error) {
-              alert('Failed to send message. Please try again later.');
-              console.error('FAILED...', error);
-            });
-        });
-    </script>
     <script>
         // Dark mode toggle
         const themeToggle = document.getElementById('theme-toggle');
