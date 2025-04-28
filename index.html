@@ -1,152 +1,1473 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Choudhury Durga Prasad | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choudhury Durga Prasad | Data Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0080FF;
+            --secondary: #29B5E8;
+            --accent: #FFD43B;
+            --text: #333;
+            --bg-light: #fff;
+            --bg-dark: #1E1E1E;
+            --card-bg: #f9f9f9;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
 
-    body, html {
-      height: 100%;
-      width: 100%;
-      font-family: 'Poppins', sans-serif;
-      background: #0f0f0f; /* dark base */
-      overflow-x: hidden;
-    }
+        .dark-mode {
+            --text: #f0f0f0;
+            --bg-light: #1E1E1E;
+            --bg-dark: #121212;
+            --card-bg: #2d2d2d;
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
 
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-    header, section, footer {
-      position: relative;
-      z-index: 2;
-    }
+        body {
+            background-color: var(--bg-light);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    header {
-      background: rgba(0,0,0,0.7);
-      padding: 1.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-    }
+        /* Header & Navigation */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            box-shadow: 0 2px 10px var(--shadow);
+        }
 
-    header h1 { color: #00ffff; font-size: 1.8rem; }
-    nav a { color: #fff; margin-left: 1.5rem; text-decoration: none; font-weight: 500; }
-    nav a:hover { color: #00ffff; }
+        .dark-mode header {
+            background-color: rgba(30, 30, 30, 0.9);
+        }
 
-    section {
-      padding: 5rem 3rem;
-      min-height: 80vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      background: transparent;
-    }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
 
-    section#home {
-      min-height: 100vh;
-      background: transparent;
-      text-align: center;
-      justify-content: center;
-    }
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
 
-    section#home h2 {
-      font-size: 2.5rem;
-      color: #00ffff;
-      margin-bottom: 1rem;
-    }
+        nav ul li {
+            margin-left: 2rem;
+        }
 
-    section#home p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+        }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      background: rgba(0,0,0,0.7);
-      color: #bbb;
-    }
-  </style>
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.2rem;
+            cursor: pointer;
+        }
+
+        /* Sections */
+        section {
+            min-height: 100vh;
+            padding: 6rem 5%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        /* Hero Section */
+        #home {
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0, 128, 255, 0.1), rgba(41, 181, 232, 0.1));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-pic {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        #home h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid var(--primary);
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+
+        #home h2 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            color: var(--text);
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .cta-button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 128, 255, 0.3);
+        }
+
+        /* About Section */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .experience-cards {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .exp-card {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease;
+            flex: 1;
+        }
+
+        .exp-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .exp-card h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .floating-img {
+            max-width: 80%;
+            max-height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow);
+            animation: float 6s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        /* Experience Section */
+        .timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 128, 255, 0.1);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-header h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-meta {
+            display: flex;
+            gap: 1rem;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .timeline-position h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .timeline-date {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-details {
+            padding-left: 1.5rem;
+        }
+
+        .timeline-details li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .timeline-details li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            position: absolute;
+            left: -1.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar-container {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dark-mode .skill-bar-container {
+            background-color: #444;
+        }
+
+        .skill-bar {
+            height: 100%;
+            border-radius: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        /* Projects Section */
+        .project-carousel {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+        }
+
+        .project-card {
+            min-width: 300px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 5px 15px var(--shadow);
+            scroll-snap-align: start;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow);
+        }
+
+        .project-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tags span {
+            background-color: rgba(0, 128, 255, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+        }
+
+        /* Certifications Section */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .cert-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .cert-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            padding: 1rem;
+            background-color: white;
+        }
+
+        .dark-mode .cert-card img {
+            background-color: #333;
+        }
+
+        .cert-card h3 {
+            padding: 1rem;
+            color: var(--primary);
+        }
+
+        .cert-card p {
+            padding: 0 1rem 1rem;
+            color: var(--secondary);
+        }
+
+        /* Resume Section */
+        .resume-container {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .resume-preview {
+            flex: 2;
+            height: 600px;
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow);
+            overflow: hidden;
+        }
+
+        .pdf-viewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .resume-actions {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .download-btn, .print-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .download-btn {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .print-btn {
+            background-color: var(--card-bg);
+            color: var(--text);
+            border: 1px solid var(--primary);
+        }
+
+        .download-btn:hover, .print-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px var(--shadow);
+        }
+
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .contact-form {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            background-color: var(--card-bg);
+            color: var(--text);
+        }
+
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-form button {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-form button:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--card-bg);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-container, .resume-container, .contact-container {
+                flex-direction: column;
+            }
+
+            .experience-cards {
+                flex-direction: column;
+            }
+
+            #home h1 {
+                font-size: 2rem;
+                animation: none;
+                border-right: none;
+                white-space: normal;
+            }
+
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .resume-preview {
+                height: 400px;
+            }
+
+            .about-image {
+                margin-top: 2rem;
+            }
+            
+            .floating-img {
+                max-width: 100%;
+            }
+            
+            .timeline {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Particles.js container */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+    </style>
 </head>
 <body>
+    <!-- Rest of your HTML content remains exactly the same -->
+    <header>
+        <div class="logo">Choudhury Durga Prasad</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
+    </header>
 
-<!-- Particles Background -->
-<div id="particles-js"></div>
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/Durga_Prasad_recent.png" alt="Durga Prasad" class="profile-pic">
+            <h1>Choudhury Durga Prasad</h1>
+            <h2>Data Engineer | Analytical Data Engineer | Cloud Computing Specialist</h2>
+            <div class="social-icons">
+                <a href="https://linkedin.com/in/durga-prasad-choudhury-75022314b"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/durgaprasadpr718"><i class="fab fa-github"></i></a>
+                <a href="https://www.credly.com/users/choudhury-durgaprasad"><i class="fas fa-award"></i></a>
+            </div>
+            <a href="#about" class="cta-button">Explore My Work ↓</a>
+        </div>
+    </section>
 
-<header>
-  <h1>Durga Prasad</h1>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#projects">Projects</a>
-    <a href="#resume-preview">Resume</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p>Results-oriented Data Engineer with over 4+ years of experience delivering scalable, cloud-native data solutions across AWS, Microsoft Azure, and Google Cloud Platform (GCP). Certified in all three platforms, I specialize in PySpark, DBT, Snowflake, Python, and SQL to design, build, and optimize data pipelines that drive real-time analytics and data-driven decisions</p>
+                <p>Proven track record in delivering real-time data solutions and actionable insights. Seeking to leverage expertise to drive impactful data-centric solutions.</p>
+                <div class="experience-cards">
+                    <div class="exp-card">
+                        <h3>4+</h3>
+                        <p>Years Experience</p>
+                    </div>
+                    <div class="exp-card">
+                        <h3>10+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                    <div class="exp-card">
+                        <h3>7+</h3>
+                        <p>Certifications</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/dp.jpg" alt="Working" class="floating-img">
+            </div>
+        </div>
+    </section>
 
-<section id="home">
-  <h2>Hi, I'm Choudhury Durga Prasad</h2>
-  <p>Data Engineer | Cloud Enthusiast | Problem Solver</p>
-</section>
+    <section id="skills" class="skills">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <!-- Programming Languages -->
+            <div class="skill-category">
+                <h3>Programming Languages</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PySpark</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>SQL</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Scala</span>
+                        <span>50%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="50"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Data Science & Analysis -->
+            <div class="skill-category">
+                <h3>Data Science & Analysis</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>NumPy/pandas</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Matplotlib/Seaborn</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Sigma Computing</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Tableau</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Data Engineering -->
+            <div class="skill-category">
+                <h3>Data Engineering</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Snowflake</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>BigQuery</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Reactor UI/DSL</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Reactor Data</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Cloud Platforms -->
+            <div class="skill-category">
+                <h3>Cloud Platforms</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Google Cloud (GCP)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Azure</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>AWS</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="75"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Containerization & Orchestration -->
+            <div class="skill-category">
+                <h3>Containerization & Orchestration</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Docker</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Kubernetes</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="70"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Apache Airflow</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Data Modeling & Optimization -->
+            <div class="skill-category">
+                <h3>Data Modeling & Optimization</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Data Modeling</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Query Optimization</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Data Integration</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Data Build Tool (DBT)</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="90"></div>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Statistics & Programming Concepts -->
+            <div class="skill-category">
+                <h3>Statistics & Fundamentals</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Statistics</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Algorithms/Data Structures</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Version Control (Git)</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar-container">
+                        <div class="skill-bar" data-level="85"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- About, Skills, Certifications, Projects, Resume, Contact Sections would go here... -->
+    <section id="experience" class="experience">
+        <h2>Professional Experience</h2>
+        <div class="timeline">
+            <!-- Softborne Technology Solutions -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>Softborne Technology Solutions Pte. Ltd.</h3>
+                    <div class="timeline-meta">
+                        <span>Full-time · On-site</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Analytical Data Engineer II</h4>
+                    <div class="timeline-date">Sep 2023 – Present · Chennai, Tamil Nadu, India</div>
+                    <ul class="timeline-details">
+                        <li>Collaborated with the product management team to identify and prioritize new feature opportunities, leading to timely implementation.</li>
+                        <li>Designed and optimized scalable data models in Reactor Data using Snowflake and Big Query, improving query performance and reducing processing time.</li>
+                        <li>Designed and maintained real-time data pipelines to ensure seamless data availability in dashboards and analytics.</li>
+                        <li>Utilized Domain Specific Language (DSL) for accurately mapping source data to destination schemas.</li>
+                        <li>Used Source Links to join and map multiple data sources into unified schemas.</li>
+                        <li>Tuned complex SQL queries in Snowflake and Big Query to optimize performance and manage large-scale retail datasets.</li>
+                        <li>Worked closely with cross-functional teams to implement tailored data solutions.</li>
+                        <li>Conducted thorough validation and reconciliation checks between source systems and data warehouse to ensure 99%+ data accuracy.</li>
+                        <li>Optimized query performance and data workflows to efficiently handle large-scale retail and e-commerce datasets.</li>
+                        <li>Conducted performance tuning and optimization of database queries.</li>
+                        <li>Developed dynamic dashboards to track KPIs such as sales performance and customer lifetime value.</li>
+                        <li>Created and maintained transformation logic using DBT, promoting modular, testable, and reusable data models.</li>
+                    </ul>
+                </div>
+                
+            </div>
+            
+            <!-- KPI Partners -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>KPI Partners</h3>
+                    <div class="timeline-meta">
+                        <span>Full-time · Hybrid</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Data Engineer I</h4>
+                    <div class="timeline-date">Jul 2022 – Jul 2023 · 1 yr 1 mo · Hyderabad, Telangana, India</div>
+                    <ul class="timeline-details">
+                        <li>Created data pipeline using Apache Airflow, Python, and AWS to store weekly raw data.</li>
+                        <li>Designed a multi-user, multi-database app for processing thousands of records.</li>
+                        <li>Managed SQL and NoSQL data modelling using Big Query, Snowflake, and Amazon DynamoDB for scalable data collection and structured storage.</li>
+                        <li>Collaborated with cross-functional teams for pipeline design and business needs.</li>
+                        <li>Developed scalable data ingestion processes and optimized ETL workflows.</li>
+                        <li>Implemented data quality checks and monitoring mechanisms for data integrity.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- DXC Technology -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>DXC Technology</h3>
+                    <div class="timeline-meta">
+                        <span>Full-time · Remote</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Associate Professional Software Engineer</h4>
+                    <div class="timeline-date">Aug 2021 - Jun 2022 · 11 mos · Bengaluru, Karnataka, India</div>
+                    <ul class="timeline-details">
+                        <li>Developed and maintained scalable data pipelines using Azure Data Factory and Databricks.</li>
+                        <li>Optimized data storage and retrieval using Azure Synapse Analytics and Delta Lake.</li>
+                        <li>Implemented data security best practices with Azure Key Vault and Role-Based Access Control (RBAC).</li>
+                        <li>Monitored and troubleshot data pipeline failures using Azure Monitor and Log Analytics.</li>
+                        <li>Designed and implemented data models for efficient querying and reporting.</li>
+                        <li>Automated ETL processes to streamline data ingestion and transformation.</li>
+                        <li>Collaborated with data analysts and stakeholders to ensure data accuracy and consistency.</li>
+                        <li>Conducted performance tuning of SQL queries and Spark jobs for optimal execution.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Cyber Crime Cell, Gurugram Police -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>Cyber Crime Cell, Gurugram Police</h3>
+                    <div class="timeline-meta">
+                        <span>Internship · Remote</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Cyber Security Intern</h4>
+                    <div class="timeline-date">Jun 2021 - Jul 2021 · 2 mos · Gurugram, Haryana, India</div>
+                    <ul class="timeline-details">
+                        <li>Provided first-level compliance monitoring and investigations.</li>
+                        <li>Assisted with forensics analysis and fact gathering.</li>
+                        <li>Assisted with vulnerability assessments and penetration testing for specific applications, services, networks, and servers as required.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- Google -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>Google</h3>
+                    <div class="timeline-meta">
+                        <span>Internship · Remote</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Google Cloud Ready Facilitator</h4>
+                    <div class="timeline-date">Apr 2021 - Jun 2021 · 3 mos · Bengaluru, Karnataka, India</div>
+                    <ul class="timeline-details">
+                        <li>Learned Computing, Application Development, Big Data & Machine Learning using Google Cloud's training platform Qwiklabs.</li>
+                        <li>Completed self-paced labs with temporary credentials to Google Cloud Platform for hands-on learning.</li>
+                    </ul>
+                </div>
+            </div>
+    
+            <!-- DXC Technology Internship -->
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <h3>DXC Technology</h3>
+                    <div class="timeline-meta">
+                        <span>Internship · Remote</span>
+                    </div>
+                </div>
+                
+                <div class="timeline-position">
+                    <h4>Project Trainee</h4>
+                    <div class="timeline-date">Feb 2021 - Apr 2021 · 3 mos · Bengaluru, Karnataka, India</div>
+                    <ul class="timeline-details">
+                        <li>The project aims to analyze and identify the data quality issues and strategies to mitigate these Issues in the given data. We need to start with a PowerPoint presentation that outlines the approach that we will be taking.</li>
+                        <li>The client has agreed on a 3-week scope with the following 3 phases as follows - Data Exploration: Model Development</li>
+                        <li>Created PowerPoint presentations outlining approaches for data quality improvement.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  &copy; 2025 Choudhury Durga Prasad. All rights reserved.
-</footer>
+    <section id="projects" class="projects">
+        <h2>Featured Projects</h2>
+        <div class="project-carousel">
+            <div class="project-card">
+                <h3>Shopping Sales Project</h3>
+                <p>Developed an end-to-end data pipeline using AWS services and Airflow for reporting from Google Sheets API data.</p>
+                <div class="tech-tags">
+                    <span>AWS</span>
+                    <span>Airflow</span>
+                    <span>Python</span>
+                    <span>ETL</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Real-time Data Streaming</h3>
+                <p>Implemented a real-time data ingestion system with Spark Streaming for processing high-velocity data.</p>
+                <div class="tech-tags">
+                    <span>Spark</span>
+                    <span>Kafka</span>
+                    <span>Scala</span>
+                    <span>Streaming</span>
+                </div>
+            </div>
+            
+            <div class="project-card">
+                <h3>Flight Delay Prediction</h3>
+                <p>Developed a machine learning model for predicting flight delays with 85% accuracy using historical data.</p>
+                <div class="tech-tags">
+                    <span>Python</span>
+                    <span>ML</span>
+                    <span>Pandas</span>
+                    <span>Scikit-learn</span>
+                </div>
+            </div>
 
-<!-- Initialize Particles.js -->
-<script>
-particlesJS('particles-js', {
-  "particles": {
-    "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-    "color": { "value": "#00ffff" },
-    "shape": { "type": "circle" },
-    "opacity": { "value": 0.5 },
-    "size": { "value": 3, "random": true },
-    "line_linked": {
-      "enable": true,
-      "distance": 150,
-      "color": "#00ffff",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 4,
-      "direction": "none",
-      "out_mode": "out"
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": { "enable": true, "mode": "repulse" },
-      "onclick": { "enable": true, "mode": "push" }
-    },
-    "modes": {
-      "repulse": { "distance": 100 },
-      "push": { "particles_nb": 4 }
-    }
-  },
-  "retina_detect": true
-});
-</script>
+            <div class="project-card">
+                <h3>Customer Segmentation</h3>
+                <p>Utilized R and clustering techniques to segment customers for targeted marketing campaigns.</p>
+                <div class="tech-tags">
+                    <span>R</span>
+                    <span>Clustering</span>
+                    <span>Data Analysis</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="certifications" class="certifications">
+        <h2>Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/google.jpeg" alt="Google Cloud">
+                <h3>Google Cloud Certified Professional Data Engineer</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Fabric Analytics Engineer Associate</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>icrosoft Certified: Azure Data Engineer Associate</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: DevOps Engineer Expert</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Azure Developer Associate</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <h3>Microsoft Certified: Azure Administrator Associate</h3>
+            </div>
+            <div class="cert-card">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/aws.jpeg" alt="AWS">
+                <h3>AWS Certified Cloud Practitioner</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume" class="resume">
+        <h2>My Resume</h2>
+        <div class="resume-container">
+            <div class="resume-preview">
+                <iframe src="https://docs.google.com/viewer?url=https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf&embedded=true" class="pdf-viewer"></iframe>
+            </div>
+            <div class="resume-actions">
+                <button class="download-btn" onclick="window.open('https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf', '_blank')">
+                    <i class="fas fa-download"></i> Download PDF
+                </button>
+                <button class="print-btn" onclick="window.print()">
+                    <i class="fas fa-print"></i> Print Resume
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:durgaprasadchowdury@gmail.com">durgaprasadchowdury@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+91 9502192674</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Pathapatnam, Andhra Pradesh, India</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <a href="https://www.github.com/durgaprasadpr718" target="_blank" rel="noopener noreferrer">github.com/durgaprasadpr718</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-linkedin"></i>
+                    <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" rel="noopener noreferrer">linkedin.com/in/durga-prasad-choudhury-75022314b</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        .contact {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .contact-item a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+    </style>
+
+    <footer>
+        <p>&copy; 2024 Choudhury Durga Prasad. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Dark mode toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Animate skill bars when scrolled into view
+        const skillBars = document.querySelectorAll('.skill-bar');
+        
+        function animateSkillBars() {
+            skillBars.forEach(bar => {
+                const level = bar.getAttribute('data-level');
+                const rect = bar.getBoundingClientRect();
+                const isVisible = (rect.top <= window.innerHeight) && (rect.bottom >= 0);
+                
+                if (isVisible && bar.style.width === '0px') {
+                    bar.style.width = level + '%';
+                }
+            });
+        }
+
+        // Check on load and scroll
+        window.addEventListener('load', animateSkillBars);
+        window.addEventListener('scroll', animateSkillBars);
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = this.querySelector('input[type="text"]').value;
+            const email = this.querySelector('input[type="email"]').value;
+            const message = this.querySelector('textarea').value;
+            
+            // Here you would typically send this data to a server
+            console.log('Form submitted:', { name, email, message });
+            
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Initialize particles.js
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#0080FF"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#0080FF",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
