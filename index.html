@@ -110,6 +110,8 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         section h2 {
@@ -647,19 +649,75 @@
             }
         }
 
-        /* Particles.js container */
-        #particles-js {
+        /* Neuron Network Animation */
+        .neuron-network {
             position: absolute;
-            width: 100%;
-            height: 100%;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
             z-index: 1;
+            pointer-events: none;
+        }
+
+        .neuron {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #29B5E8;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #29B5E8, 0 0 20px #29B5E8;
+            transform: translate(-50%, -50%);
+            pointer-events: auto;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .neuron:hover {
+            transform: translate(-50%, -50%) scale(1.5);
+            box-shadow: 0 0 15px #29B5E8, 0 0 30px #29B5E8;
+            z-index: 2;
+        }
+
+        .connection {
+            position: absolute;
+            background-color: rgba(41, 181, 232, 0.3);
+            height: 2px;
+            transform-origin: left center;
+            z-index: 1;
+        }
+
+        /* Floating bubbles background for other sections */
+        .floating-bubbles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background-color: rgba(0, 128, 255, 0.1);
+            border-radius: 50%;
+            animation: float-up 15s infinite ease-in;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Rest of your HTML content remains exactly the same -->
     <header>
         <div class="logo">Choudhury Durga Prasad</div>
         <nav>
@@ -679,7 +737,7 @@
     </header>
 
     <section id="home" class="hero">
-        <div id="particles-js"></div>
+        <div class="neuron-network" id="neuron-network"></div>
         <div class="hero-content">
             <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/Durga_Prasad_recent.png" alt="Durga Prasad" class="profile-pic">
             <h1>Choudhury Durga Prasad</h1>
@@ -694,6 +752,7 @@
     </section>
 
     <section id="about" class="about">
+        <div class="floating-bubbles" id="about-bubbles"></div>
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-text">
@@ -721,6 +780,7 @@
     </section>
 
     <section id="skills" class="skills">
+        <div class="floating-bubbles" id="skills-bubbles"></div>
         <h2>Technical Skills</h2>
         <div class="skills-grid">
             <!-- Programming Languages -->
@@ -986,6 +1046,7 @@
     </section>
 
     <section id="experience" class="experience">
+        <div class="floating-bubbles" id="experience-bubbles"></div>
         <h2>Professional Experience</h2>
         <div class="timeline">
             <!-- Softborne Technology Solutions -->
@@ -1188,7 +1249,7 @@
             </div>
             <div class="cert-card">
                 <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
-                <h3>icrosoft Certified: Azure Data Engineer Associate</h3>
+                <h3>Microsoft Certified: Azure Data Engineer Associate</h3>
             </div>
             <div class="cert-card">
                 <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
