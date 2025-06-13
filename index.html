@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -64,7 +65,116 @@
             color: var(--primary);
         }
 
+        /* Basic styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
         nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger menu styles */
+        .menu-toggle {
+            display: none;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text);
+            border-radius: 2px;
+        }
+
+        /* Responsive for smaller screens */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem 1rem 1rem 1rem;
+            }
+            .hamburger {
+                display: flex;
+                margin-right: 15px;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: transparent;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease, background 0.3s ease;
+                z-index: 999;
+            }
+
+            nav ul.nav-links {
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 0;
+            }
+
+            nav ul li {
+                margin: 1rem 0;
+            }
+
+            /* Show menu + apply background color */
+            .menu-toggle:checked+.hamburger+nav {
+                max-height: 500px;
+                background: var(--background, #ffffff);
+                /* Add your preferred color here */
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+
+
+        /* nav ul {
             display: flex;
             list-style: none;
         }
@@ -93,7 +203,7 @@
 
         nav ul li a:hover::after {
             width: 100%;
-        }
+        } */
 
         .theme-toggle {
             background: none;
@@ -155,9 +265,17 @@
         }
 
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
         }
 
         #home h1 {
@@ -170,13 +288,25 @@
         }
 
         @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
         }
 
         @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--primary) }
+
+            from,
+            to {
+                border-color: transparent
+            }
+
+            50% {
+                border-color: var(--primary)
+            }
         }
 
         #home h2 {
@@ -513,7 +643,8 @@
             gap: 1.5rem;
         }
 
-        .download-btn, .print-btn {
+        .download-btn,
+        .print-btn {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -537,7 +668,8 @@
             border: 1px solid var(--primary);
         }
 
-        .download-btn:hover, .print-btn:hover {
+        .download-btn:hover,
+        .print-btn:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px var(--shadow);
         }
@@ -611,7 +743,10 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .about-container, .resume-container, .contact-container {
+
+            .about-container,
+            .resume-container,
+            .contact-container {
                 flex-direction: column;
             }
 
@@ -637,11 +772,11 @@
             .about-image {
                 margin-top: 2rem;
             }
-            
+
             .floating-img {
                 max-width: 100%;
             }
-            
+
             .timeline {
                 padding: 1.5rem;
             }
@@ -658,9 +793,10 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Rest of your HTML content remains exactly the same -->
-    <header>
+    <!-- <header>
         <div class="logo">Choudhury Durga Prasad</div>
         <nav>
             <ul>
@@ -676,12 +812,43 @@
         <button class="theme-toggle" id="theme-toggle">
             <i class="fas fa-moon"></i>
         </button>
+    </header> -->
+
+    <header>
+        <div class="logo">Choudhury Durga Prasad</div>
+
+        <!-- Hamburger Toggle -->
+        <input type="checkbox" id="menu-toggle" class="menu-toggle">
+        <label for="menu-toggle" class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <!-- Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#resume">Resume</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <button class="theme-toggle" id="theme-toggle">
+            <i class="fas fa-moon"></i>
+        </button>
     </header>
+
 
     <section id="home" class="hero">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/Durga_Prasad_recent.png" alt="Durga Prasad" class="profile-pic">
+            <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/Durga_Prasad_recent.png"
+                alt="Durga Prasad" class="profile-pic">
             <h1>Choudhury Durga Prasad</h1>
             <h2>Data Engineer | Analytical Data Engineer | Cloud Computing Specialist</h2>
             <div class="social-icons">
@@ -697,8 +864,12 @@
         <h2>About Me</h2>
         <div class="about-container">
             <div class="about-text">
-                <p>Results-oriented Data Engineer with over 4+ years of experience delivering scalable, cloud-native data solutions across AWS, Microsoft Azure, and Google Cloud Platform (GCP). Certified in all three platforms, I specialize in PySpark, DBT, Snowflake, Python, and SQL to design, build, and optimize data pipelines that drive real-time analytics and data-driven decisions</p>
-                <p>Proven track record in delivering real-time data solutions and actionable insights. Seeking to leverage expertise to drive impactful data-centric solutions.</p>
+                <p>Results-oriented Data Engineer with over 4+ years of experience delivering scalable, cloud-native
+                    data solutions across AWS, Microsoft Azure, and Google Cloud Platform (GCP). Certified in all three
+                    platforms, I specialize in PySpark, DBT, Snowflake, Python, and SQL to design, build, and optimize
+                    data pipelines that drive real-time analytics and data-driven decisions</p>
+                <p>Proven track record in delivering real-time data solutions and actionable insights. Seeking to
+                    leverage expertise to drive impactful data-centric solutions.</p>
                 <div class="experience-cards">
                     <div class="exp-card">
                         <h3>4+</h3>
@@ -715,7 +886,8 @@
                 </div>
             </div>
             <div class="about-image">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/dp.jpg" alt="Working" class="floating-img">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/dp.jpg" alt="Working"
+                    class="floating-img">
             </div>
         </div>
     </section>
@@ -763,7 +935,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Data Science & Analysis -->
             <div class="skill-category">
                 <h3>Data Science & Analysis</h3>
@@ -804,7 +976,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Data Engineering -->
             <div class="skill-category">
                 <h3>Data Engineering</h3>
@@ -845,7 +1017,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Cloud Platforms -->
             <div class="skill-category">
                 <h3>Cloud Platforms</h3>
@@ -877,7 +1049,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Containerization & Orchestration -->
             <div class="skill-category">
                 <h3>Containerization & Orchestration</h3>
@@ -909,7 +1081,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Data Modeling & Optimization -->
             <div class="skill-category">
                 <h3>Data Modeling & Optimization</h3>
@@ -950,7 +1122,7 @@
                     </div>
                 </div>
             </div>
-    
+
             <!-- Statistics & Programming Concepts -->
             <div class="skill-category">
                 <h3>Statistics & Fundamentals</h3>
@@ -996,28 +1168,37 @@
                         <span>Full-time · On-site</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Analytical Data Engineer II</h4>
                     <div class="timeline-date">Sep 2023 – Present · Chennai, Tamil Nadu, India</div>
                     <ul class="timeline-details">
-                        <li>Collaborated with the product management team to identify and prioritize new feature opportunities, leading to timely implementation.</li>
-                        <li>Designed and optimized scalable data models in Reactor Data using Snowflake and Big Query, improving query performance and reducing processing time.</li>
-                        <li>Designed and maintained real-time data pipelines to ensure seamless data availability in dashboards and analytics.</li>
-                        <li>Utilized Domain Specific Language (DSL) for accurately mapping source data to destination schemas.</li>
+                        <li>Collaborated with the product management team to identify and prioritize new feature
+                            opportunities, leading to timely implementation.</li>
+                        <li>Designed and optimized scalable data models in Reactor Data using Snowflake and Big Query,
+                            improving query performance and reducing processing time.</li>
+                        <li>Designed and maintained real-time data pipelines to ensure seamless data availability in
+                            dashboards and analytics.</li>
+                        <li>Utilized Domain Specific Language (DSL) for accurately mapping source data to destination
+                            schemas.</li>
                         <li>Used Source Links to join and map multiple data sources into unified schemas.</li>
-                        <li>Tuned complex SQL queries in Snowflake and Big Query to optimize performance and manage large-scale retail datasets.</li>
+                        <li>Tuned complex SQL queries in Snowflake and Big Query to optimize performance and manage
+                            large-scale retail datasets.</li>
                         <li>Worked closely with cross-functional teams to implement tailored data solutions.</li>
-                        <li>Conducted thorough validation and reconciliation checks between source systems and data warehouse to ensure 99%+ data accuracy.</li>
-                        <li>Optimized query performance and data workflows to efficiently handle large-scale retail and e-commerce datasets.</li>
+                        <li>Conducted thorough validation and reconciliation checks between source systems and data
+                            warehouse to ensure 99%+ data accuracy.</li>
+                        <li>Optimized query performance and data workflows to efficiently handle large-scale retail and
+                            e-commerce datasets.</li>
                         <li>Conducted performance tuning and optimization of database queries.</li>
-                        <li>Developed dynamic dashboards to track KPIs such as sales performance and customer lifetime value.</li>
-                        <li>Created and maintained transformation logic using DBT, promoting modular, testable, and reusable data models.</li>
+                        <li>Developed dynamic dashboards to track KPIs such as sales performance and customer lifetime
+                            value.</li>
+                        <li>Created and maintained transformation logic using DBT, promoting modular, testable, and
+                            reusable data models.</li>
                     </ul>
                 </div>
-                
+
             </div>
-            
+
             <!-- KPI Partners -->
             <div class="timeline-item">
                 <div class="timeline-header">
@@ -1026,21 +1207,22 @@
                         <span>Full-time · Hybrid</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Data Engineer I</h4>
                     <div class="timeline-date">Jul 2022 – Jul 2023 · 1 yr 1 mo · Hyderabad, Telangana, India</div>
                     <ul class="timeline-details">
                         <li>Created data pipeline using Apache Airflow, Python, and AWS to store weekly raw data.</li>
                         <li>Designed a multi-user, multi-database app for processing thousands of records.</li>
-                        <li>Managed SQL and NoSQL data modelling using Big Query, Snowflake, and Amazon DynamoDB for scalable data collection and structured storage.</li>
+                        <li>Managed SQL and NoSQL data modelling using Big Query, Snowflake, and Amazon DynamoDB for
+                            scalable data collection and structured storage.</li>
                         <li>Collaborated with cross-functional teams for pipeline design and business needs.</li>
                         <li>Developed scalable data ingestion processes and optimized ETL workflows.</li>
                         <li>Implemented data quality checks and monitoring mechanisms for data integrity.</li>
                     </ul>
                 </div>
             </div>
-    
+
             <!-- DXC Technology -->
             <div class="timeline-item">
                 <div class="timeline-header">
@@ -1049,23 +1231,26 @@
                         <span>Full-time · Remote</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Associate Professional Software Engineer</h4>
                     <div class="timeline-date">Aug 2021 - Jun 2022 · 11 mos · Bengaluru, Karnataka, India</div>
                     <ul class="timeline-details">
-                        <li>Developed and maintained scalable data pipelines using Azure Data Factory and Databricks.</li>
+                        <li>Developed and maintained scalable data pipelines using Azure Data Factory and Databricks.
+                        </li>
                         <li>Optimized data storage and retrieval using Azure Synapse Analytics and Delta Lake.</li>
-                        <li>Implemented data security best practices with Azure Key Vault and Role-Based Access Control (RBAC).</li>
+                        <li>Implemented data security best practices with Azure Key Vault and Role-Based Access Control
+                            (RBAC).</li>
                         <li>Monitored and troubleshot data pipeline failures using Azure Monitor and Log Analytics.</li>
                         <li>Designed and implemented data models for efficient querying and reporting.</li>
                         <li>Automated ETL processes to streamline data ingestion and transformation.</li>
-                        <li>Collaborated with data analysts and stakeholders to ensure data accuracy and consistency.</li>
+                        <li>Collaborated with data analysts and stakeholders to ensure data accuracy and consistency.
+                        </li>
                         <li>Conducted performance tuning of SQL queries and Spark jobs for optimal execution.</li>
                     </ul>
                 </div>
             </div>
-    
+
             <!-- Cyber Crime Cell, Gurugram Police -->
             <div class="timeline-item">
                 <div class="timeline-header">
@@ -1074,18 +1259,19 @@
                         <span>Internship · Remote</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Cyber Security Intern</h4>
                     <div class="timeline-date">Jun 2021 - Jul 2021 · 2 mos · Gurugram, Haryana, India</div>
                     <ul class="timeline-details">
                         <li>Provided first-level compliance monitoring and investigations.</li>
                         <li>Assisted with forensics analysis and fact gathering.</li>
-                        <li>Assisted with vulnerability assessments and penetration testing for specific applications, services, networks, and servers as required.</li>
+                        <li>Assisted with vulnerability assessments and penetration testing for specific applications,
+                            services, networks, and servers as required.</li>
                     </ul>
                 </div>
             </div>
-    
+
             <!-- Google -->
             <div class="timeline-item">
                 <div class="timeline-header">
@@ -1094,17 +1280,19 @@
                         <span>Internship · Remote</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Google Cloud Ready Facilitator</h4>
                     <div class="timeline-date">Apr 2021 - Jun 2021 · 3 mos · Bengaluru, Karnataka, India</div>
                     <ul class="timeline-details">
-                        <li>Learned Computing, Application Development, Big Data & Machine Learning using Google Cloud's training platform Qwiklabs.</li>
-                        <li>Completed self-paced labs with temporary credentials to Google Cloud Platform for hands-on learning.</li>
+                        <li>Learned Computing, Application Development, Big Data & Machine Learning using Google Cloud's
+                            training platform Qwiklabs.</li>
+                        <li>Completed self-paced labs with temporary credentials to Google Cloud Platform for hands-on
+                            learning.</li>
                     </ul>
                 </div>
             </div>
-    
+
             <!-- DXC Technology Internship -->
             <div class="timeline-item">
                 <div class="timeline-header">
@@ -1113,13 +1301,16 @@
                         <span>Internship · Remote</span>
                     </div>
                 </div>
-                
+
                 <div class="timeline-position">
                     <h4>Project Trainee</h4>
                     <div class="timeline-date">Feb 2021 - Apr 2021 · 3 mos · Bengaluru, Karnataka, India</div>
                     <ul class="timeline-details">
-                        <li>The project aims to analyze and identify the data quality issues and strategies to mitigate these Issues in the given data. We need to start with a PowerPoint presentation that outlines the approach that we will be taking.</li>
-                        <li>The client has agreed on a 3-week scope with the following 3 phases as follows - Data Exploration: Model Development</li>
+                        <li>The project aims to analyze and identify the data quality issues and strategies to mitigate
+                            these Issues in the given data. We need to start with a PowerPoint presentation that
+                            outlines the approach that we will be taking.</li>
+                        <li>The client has agreed on a 3-week scope with the following 3 phases as follows - Data
+                            Exploration: Model Development</li>
                         <li>Created PowerPoint presentations outlining approaches for data quality improvement.</li>
                     </ul>
                 </div>
@@ -1132,7 +1323,8 @@
         <div class="project-carousel">
             <div class="project-card">
                 <h3>Shopping Sales Project</h3>
-                <p>Developed an end-to-end data pipeline using AWS services and Airflow for reporting from Google Sheets API data.</p>
+                <p>Developed an end-to-end data pipeline using AWS services and Airflow for reporting from Google Sheets
+                    API data.</p>
                 <div class="tech-tags">
                     <span>AWS</span>
                     <span>Airflow</span>
@@ -1140,10 +1332,11 @@
                     <span>ETL</span>
                 </div>
             </div>
-            
+
             <div class="project-card">
                 <h3>Real-time Data Streaming</h3>
-                <p>Implemented a real-time data ingestion system with Spark Streaming for processing high-velocity data.</p>
+                <p>Implemented a real-time data ingestion system with Spark Streaming for processing high-velocity data.
+                </p>
                 <div class="tech-tags">
                     <span>Spark</span>
                     <span>Kafka</span>
@@ -1151,10 +1344,11 @@
                     <span>Streaming</span>
                 </div>
             </div>
-            
+
             <div class="project-card">
                 <h3>Flight Delay Prediction</h3>
-                <p>Developed a machine learning model for predicting flight delays with 85% accuracy using historical data.</p>
+                <p>Developed a machine learning model for predicting flight delays with 85% accuracy using historical
+                    data.</p>
                 <div class="tech-tags">
                     <span>Python</span>
                     <span>ML</span>
@@ -1179,15 +1373,18 @@
         <h2>Certifications</h2>
         <div class="cert-grid">
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/google.jpeg" alt="Google Cloud">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/google.jpeg"
+                    alt="Google Cloud">
                 <h3>Google Cloud Certified Professional Data Engineer</h3>
             </div>
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg"
+                    alt="Microsoft Azure">
                 <h3>Microsoft Certified: Fabric Analytics Engineer Associate</h3>
             </div>
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg"
+                    alt="Microsoft Azure">
                 <h3>Microsoft Certified: Azure Data Engineer Associate</h3>
             </div>
             <div class="cert-card">
@@ -1195,15 +1392,18 @@
                 <h3>AWS Certified Data Engineer - Associate</h3>
             </div>
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg"
+                    alt="Microsoft Azure">
                 <h3>Microsoft Certified: DevOps Engineer Expert</h3>
             </div>
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg"
+                    alt="Microsoft Azure">
                 <h3>Microsoft Certified: Azure Developer Associate</h3>
             </div>
             <div class="cert-card">
-                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg" alt="Microsoft Azure">
+                <img src="https://raw.githubusercontent.com/durgaprasadpr718/Portfolio/main/microsoft_logo.jpeg"
+                    alt="Microsoft Azure">
                 <h3>Microsoft Certified: Azure Administrator Associate</h3>
             </div>
             <div class="cert-card">
@@ -1217,10 +1417,13 @@
         <h2>My Resume</h2>
         <div class="resume-container">
             <div class="resume-preview">
-                <iframe src="https://docs.google.com/viewer?url=https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf&embedded=true" class="pdf-viewer"></iframe>
+                <iframe
+                    src="https://docs.google.com/viewer?url=https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf&embedded=true"
+                    class="pdf-viewer"></iframe>
             </div>
             <div class="resume-actions">
-                <button class="download-btn" onclick="window.open('https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf', '_blank')">
+                <button class="download-btn"
+                    onclick="window.open('https://github.com/durgaprasadpr718/Portfolio/raw/main/Choudhury_Durga_Prasad_DE_CV.pdf', '_blank')">
                     <i class="fas fa-download"></i> Download PDF
                 </button>
                 <button class="print-btn" onclick="window.print()">
@@ -1248,16 +1451,18 @@
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-github"></i>
-                    <a href="https://www.github.com/durgaprasadpr718" target="_blank" rel="noopener noreferrer">github.com/durgaprasadpr718</a>
+                    <a href="https://www.github.com/durgaprasadpr718" target="_blank"
+                        rel="noopener noreferrer">github.com/durgaprasadpr718</a>
                 </div>
                 <div class="contact-item">
                     <i class="fab fa-linkedin"></i>
-                    <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank" rel="noopener noreferrer">linkedin.com/in/durga-prasad-choudhury-75022314b</a>
+                    <a href="https://www.linkedin.com/in/durga-prasad-choudhury-75022314b" target="_blank"
+                        rel="noopener noreferrer">linkedin.com/in/durga-prasad-choudhury-75022314b</a>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <style>
         .contact {
             text-align: center;
@@ -1265,26 +1470,31 @@
             flex-direction: column;
             align-items: center;
         }
+
         .contact-container {
             width: 100%;
             display: flex;
             justify-content: center;
         }
+
         .contact-info {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 1rem;
         }
+
         .contact-item {
             display: flex;
             align-items: center;
             gap: 0.5rem;
         }
+
         .contact-item a {
             color: inherit;
             text-decoration: none;
         }
+
         .contact-item a:hover {
             color: var(--primary);
         }
@@ -1299,10 +1509,10 @@
         // Dark mode toggle
         const themeToggle = document.getElementById('theme-toggle');
         const icon = themeToggle.querySelector('i');
-        
+
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
-            
+
             if (document.body.classList.contains('dark-mode')) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
@@ -1314,13 +1524,13 @@
 
         // Animate skill bars when scrolled into view
         const skillBars = document.querySelectorAll('.skill-bar');
-        
+
         function animateSkillBars() {
             skillBars.forEach(bar => {
                 const level = bar.getAttribute('data-level');
                 const rect = bar.getBoundingClientRect();
                 const isVisible = (rect.top <= window.innerHeight) && (rect.bottom >= 0);
-                
+
                 if (isVisible && bar.style.width === '0px') {
                     bar.style.width = level + '%';
                 }
@@ -1333,12 +1543,12 @@
 
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+            anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
@@ -1350,17 +1560,17 @@
 
         // Form submission
         const contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', function(e) {
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Get form values
             const name = this.querySelector('input[type="text"]').value;
             const email = this.querySelector('input[type="email"]').value;
             const message = this.querySelector('textarea').value;
-            
+
             // Here you would typically send this data to a server
             console.log('Form submitted:', { name, email, message });
-            
+
             // Show success message
             alert('Thank you for your message! I will get back to you soon.');
             this.reset();
@@ -1474,80 +1684,81 @@
         });
     </script>
 
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-<script>
-particlesJS('particles-js', {
-    "particles": {
-        "number": {
-            "value": 120,
-            "density": {
-                "enable": true,
-                "value_area": 1000
-            }
-        },
-        "color": {
-            "value": "#00ffff"
-        },
-        "shape": {
-            "type": "circle",
-            "stroke": {
-                "width": 0,
-                "color": "#000"
-            }
-        },
-        "opacity": {
-            "value": 0.7,
-            "random": true
-        },
-        "size": {
-            "value": 3,
-            "random": true
-        },
-        "line_linked": {
-            "enable": true,
-            "distance": 120,
-            "color": "#00ffff",
-            "opacity": 0.6,
-            "width": 1.2
-        },
-        "move": {
-            "enable": true,
-            "speed": 2,
-            "direction": "none",
-            "random": false,
-            "straight": false,
-            "out_mode": "out",
-            "bounce": false
-        }
-    },
-    "interactivity": {
-        "detect_on": "canvas",
-        "events": {
-            "onhover": {
-                "enable": true,
-                "mode": "grab"
-            },
-            "onclick": {
-                "enable": true,
-                "mode": "push"
-            },
-            "resize": true
-        },
-        "modes": {
-            "grab": {
-                "distance": 140,
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 120,
+                    "density": {
+                        "enable": true,
+                        "value_area": 1000
+                    }
+                },
+                "color": {
+                    "value": "#00ffff"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.7,
+                    "random": true
+                },
+                "size": {
+                    "value": 3,
+                    "random": true
+                },
                 "line_linked": {
-                    "opacity": 1
+                    "enable": true,
+                    "distance": 120,
+                    "color": "#00ffff",
+                    "opacity": 0.6,
+                    "width": 1.2
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
                 }
             },
-            "push": {
-                "particles_nb": 4
-            }
-        }
-    },
-    "retina_detect": true
-});
-</script>
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 
 </body>
+
 </html>
